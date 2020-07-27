@@ -1,7 +1,7 @@
 
 Steps to run project
 
-step-1:clone the project using git clone https://venugopalkalakota1997@bitbucket.org/venugopalkalakota1997/hacknewsrepository.git  
+step-1:clone the project using git https://github.com/venugopalkalakota1997/Hack-News.git 
 step-2:unzip the project
 step-2:execute the schema.sql and data.sql using mySQL workbench 
 	Note:make sure that mysql username:root,password:password-1
@@ -17,5 +17,5 @@ step-8:After logining in Creating a challenge(i.e intially No challenges avalaib
 step-9:After Creating the challenge logout and signup with new details and login (i.e contributing and upvoting can't be done by same user who created challenge)
 
 step-10:Mycontribution for checking his contribution
-	   Note: On clicking Hack_news on navigationbar will not go to home page on Mycontribution.Please to creat Challenge and click on Hack_new 
+	   Note: On clicking Hack_news on navigationbar will not go to home page on Mycontribution.Please to creat Challenge and click on Hack_newss 
 	
