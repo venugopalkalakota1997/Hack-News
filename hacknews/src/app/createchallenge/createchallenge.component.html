@@ -1,0 +1,62 @@
+<div class="row pb-5 px-0 py-0 mx-0">
+
+    <div class="col-lg-6 col-sm-12 mt-5 ml-5 mr-5 mb-5 ">
+        <div class="mt-5 shadow">
+            <div class="alert-danger col-12 px-auto py-5" *ngIf="createErrorMessage">
+                Challengename already exists!!
+            </div>
+        </div>
+
+        <div class="mt-5 shadow" *ngIf="newChallengeAdded">
+            <div class="alert-success col-12 px-auto py-5">
+                Challengename sucessfully added!!
+            </div>
+        </div>
+<h5>Create Challenge</h5>
+
+        <div class=" mt-5 " *ngIf="!newChallengeAdded">
+            <form [formGroup]="createChallengeForm" (submit)="createChallenge(createChallengeForm.value)">
+                <div class="row mt-5 ml-5 mr-5">
+                    <div class="col">
+                        <label for="challengename" class="mr-2">ChallengeName </label>
+                        <input type="text" class="form-control" placeholder="Enter your challenge name"
+                            formControlName="challengename" id="challengename"
+                            [class.is-invalid]="challengename.invalid && challengename.touched">
+                        <div *ngIf="challengename.errors">
+                            <small class="text text-danger"
+                                *ngIf="challengename.invalid && challengename.errors.required && challengename.touched">
+                                Challenge name required</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-5 ml-5 mr-5">
+                    <div class="col-12 ">
+                        <label for="descrption" class="mr-2">Descrption </label>
+                        <textarea class="form-control" placeholder="Enter your descrption" formControlName="descrption"
+                            id="descrption" [class.is-invalid]="descrption.invalid && descrption.touched"></textarea>
+                        <div *ngIf="descrption.errors">
+                            <small class="text text-danger"
+                                *ngIf="descrption.invalid && descrption.errors.required && descrption.touched">
+                                Descrption is required</small>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row mt-5 ml-5 mr-5">
+                    <div class="col-12 ">
+                        <label for="tags" class="mr-2">Tags </label>
+                        <select class="custom-select" formControlName="tags">
+                            <option *ngFor="let option of tagslist" [ngValue]="option">{{option.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-5 ml-5 mr-5 mb-5">
+                    <div class="col-6">
+                        <button type="submit" class="btn buttonColor text-light"
+                            [disabled]="!createChallengeForm.valid">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

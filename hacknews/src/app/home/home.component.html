@@ -1,0 +1,84 @@
+<div class="container py-5">
+
+  <h5 class=" my-5">Challenges</h5>
+  <button type="button" class="btn float-right" style="background-color: #1100ff" id="white" (click)="sortbydate()">Sort
+    By Date
+  </button>
+
+  <label for="tags" class="float-right ml-5 mr-2">
+    <select class="custom-select" (change)="filterSelected($event.target.value)">
+      <option>choose </option>
+      <option *ngFor="let option of tagslist" [ngValue]="option">{{option.name}}</option>
+    </select>
+  </label>
+
+  <button type="button" class="btn float-right ml-5" style="background-color: #1100ff" id="white"
+    (click)="myChallenge()" *ngIf="auth.loggedIn"> MyContributions </button>
+
+  <button type="button" class="btn float-right" style="background-color: #1100ff" id="white" (click)="creatChallenge()">
+    <i class="material-icons other_icon"> create </i> <span> Create challenges</span>
+  </button>
+
+  <button type="button" class="btn float-right mr-5" style="background-color: #1100ff" id="white"
+  (click)="challenges()" > Challenges </button>
+</div>
+<div class="alert-danger container mt-5" *ngIf="ErrorMessage">Already Contributed</div>
+<div class="alert-danger container  " *ngIf="!loggedIn">Login before Creating challenge</div>
+<div class="alert-danger container " *ngIf="!loggedforcontribute">Login before Contributing</div>
+<div class="alert-danger container " *ngIf="!loggedforvoting">Login before Upvoting</div>
+<div *ngIf="!mychallenge">
+  <div class="alert-success container" *ngIf="contributed">Contributed Successfully</div>
+  <div class="container card mt-5" *ngFor="let challenge of challengelist">
+    <div class="row mt-3">
+      <div class="col">
+       
+        <div class="card-title ">
+          {{challenge.title}}
+        </div>
+        <div class="card-body ">
+          {{challenge.description}}
+          <div>
+            Tags: {{challenge.tags.name}}
+          </div>
+        </div>
+        <div class="row my-3 ml-5 " *ngIf="this.auth.name!=challenge.user.id">
+          <div class="mr-5">
+            {{challenge.upvote}} <label (click)="upvote(challenge.id)"><i class="material-icons other_icon">
+                thumb_up_alt </i>
+              <span> UpVote</span></label>
+
+          </div>
+
+          <div>
+            <label (click)="contribute(challenge.id)"><i class="material-icons other_icon"> send </i> <span>
+                Contribute</span>
+            </label>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div *ngIf="mychallenge">
+
+  <div class="container card mt-5" *ngFor="let contribute of contributelist;let i=index">
+    <div class="row mt-3">
+      <div class="col">
+        <div class="card-title ">
+          {{contribute.challenge.title}}
+        </div>
+        <div class="card-body ">
+          {{contribute.challenge.description}}
+        </div>
+        <div>
+          Tags: {{contribute.challenge.tags.name}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

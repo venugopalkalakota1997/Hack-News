@@ -1,0 +1,115 @@
+<div class="row pb-5 px-0 py-0 mx-0">
+    <div class="col-xs-11 mt-5 ml-5 mr-5 mb-5 mx-auto">
+
+        <div class="card mt-5 shadow" *ngIf="!newUserAdded">
+            <div class="alert-success col-12 px-auto py-3" *ngIf="userAdded">
+                User added Sucessfully!!
+            </div>
+        </div>
+        <div class="card mt-5 shadow" >
+            <div class="alert-danger col-12 px-auto py-5" *ngIf="signupErrorMessage">
+                UserName already exists!!
+            </div>
+        </div>
+
+
+        <div class="card mt-5 shadow" *ngIf="newUserAdded">
+            <form [formGroup]="signUpForm" (submit)="addUser(signUpForm.value)">
+                <div class="row mt-1 ml-5 mr-5">
+
+                       <div class="col-md-6 col-xs-12 mt-1">
+                            <label for="empid">Employee Id</label>
+                            <input type="text" class="form-control" placeholder="Enter employee id"
+                                formControlName="empid" id="empid" 
+                                [class.is-invalid]="empid.invalid && empid.touched">
+                            <div class="text-danger" *ngIf="empid.touched && empid.invalid && empid.errors.required">
+                                Employee id is required
+                            </div>
+                            <div class="validation-error text-danger"
+                                *ngIf="signUpForm.get('empid').touched && signUpForm.get('empid').hasError('pattern')">
+                                Employee id should be a number
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6 col-xs-12 mt-1">
+                            <label for="useremail">Employee Email</label>
+                            <input type="text" class="form-control" placeholder="Enter your email"
+                                formControlName="useremail" id="useremail"
+                                [class.is-invalid]="useremail.invalid && useremail.touched">
+                            <div *ngIf="useremail.errors">
+                                <small class="text text-danger"
+                                    *ngIf="useremail.errors.required && useremail.touched">User
+                                    Email Id is required</small>
+                            </div>
+                            <div class="validation-error text-danger"
+                                *ngIf="signUpForm.get('useremail').touched && signUpForm.get('useremail').hasError('pattern')">
+                                Email Format should be followed
+                            </div>
+
+                        </div>
+                    
+                </div>
+                <div class="row ml-5 mr-5">
+                    <div class="col-md-6 col-xs-12 mt-1">
+                        <label for="firstname">First Name</label>
+                        <input type="text" class="form-control" placeholder="Enter First Name"
+                            formControlName="firstname" id="firstname"
+                            [class.is-invalid]="firstname.invalid && firstname.touched">
+                        <div *ngIf="firstname.errors">
+                            <small class="text text-danger"
+                                *ngIf="firstname.errors.required && firstname.touched">Firstname
+                                is required</small>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12  mt-1">
+                        <label for="lastname">Last Name</label>
+                        <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastname"
+                            id="lastname" [class.is-invalid]="lastname.invalid && lastname.touched">
+                        <div *ngIf="lastname.errors">
+                            <small class="text text-danger"
+                                *ngIf="lastname.errors.required && lastname.touched">Lastname is
+                                required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row ml-5 mr-5">
+                    <div class="col-md-6 col-xs-12 mt-1">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" placeholder="Enter Password"
+                            formControlName="password" id="password"
+                            [class.is-invalid]="password.invalid && password.touched">
+                        <div *ngIf="password.errors">
+                            <small class="text text-danger"
+                                *ngIf="password.errors.required && password.touched">Password is required</small>
+                            <small class="text text-danger" *ngIf="password.errors.maxlength">Password too long</small>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 col-xs-12 mt-1">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" class="form-control" placeholder="Enter Password"
+                            formControlName="confirmPassword" id="confirmPassword"
+                            [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched">
+                        <div class="text-danger"
+                            *ngIf="confirmPassword.invalid && confirmPassword.errors.required && confirmPassword.touched">
+                            Confirm the Password</div>
+                        <div class="text-danger" *ngIf="signUpForm.get('confirmPassword').hasError('nomatch')">Password
+                            and Confirm Password do not match</div>
+                    </div>
+                </div>
+
+
+                <div class="row mt-5 ml-5 mr-5 mb-5">
+                    <div class="col-12">
+                        <button type="submit" class="btn buttonColor text-light"
+                            [disabled]="!signUpForm.valid">Signup</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
