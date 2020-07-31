@@ -56,7 +56,7 @@ public class Challangecontroller {
 		return challengeservice.upVote(id);
 	}
 
-	@PostMapping("/contribute/{callengeid}/{userid}")
+@PostMapping("/contribute/{callengeid}/{userid}")
 	
 	public ResponseTransfer contribute(@PathVariable String userid, @PathVariable int callengeid)
 			throws AlreadyContributed {
