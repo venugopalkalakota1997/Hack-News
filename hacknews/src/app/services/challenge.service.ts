@@ -58,6 +58,7 @@ export class ChallengeService {
     return this._httpClient.get<any>(this.challenge + "/tags" , { headers })
   }
   getfilteredchallenges(id:any) {
+   
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Bearer ' + this._authService.getToken());
     //alert(JSON.stringify(headers));
@@ -77,4 +78,5 @@ export class ChallengeService {
     //alert(JSON.stringify(headers));
     return this._httpClient.get<any>(this.challenge + "/recent", { headers })
   }
+  
 }

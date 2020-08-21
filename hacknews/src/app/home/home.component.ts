@@ -55,7 +55,9 @@ export class HomeComponent implements OnInit {
   }
   upvote(id: any) {
     if (this.auth.isLoggedIn) {
-      this.challenge.upvote(id).subscribe((response) => {  }, (error: HttpErrorResponse) => {});
+      this.challenge.upvote(id).subscribe((response) => { 
+        this.ngOnInit();
+       }, (error: HttpErrorResponse) => {});
     }
     else{
       this.loggedforvoting=false

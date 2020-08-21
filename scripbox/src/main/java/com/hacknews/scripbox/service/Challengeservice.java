@@ -33,7 +33,7 @@ public class Challengeservice {
 		return challengeRepository.findAll();
 	}
 	public List<Tags> getAllTags() {
-		// TODO Auto-generated method stub
+		
 		return tagrepository.findAll();
 	}
 	public ResponseTransfer createQuiz(Challenge challenge) throws ChallengeAlreadyExistsException {
